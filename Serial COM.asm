@@ -1,0 +1,40 @@
+	
+	   LXI H,9000
+	   MVI A,55
+	   CALL TRANSMIT
+	   CALL RECEIVE
+	   MOV M,A
+	   HLT
+
+TRANSMIT:	   MVI B,08
+
+NEXTBIT_T:	   RLC
+	   MOV A,C
+	   ANI 7F
+	   MOV C,A
+	   MVI A,00
+	   JNC ZERO
+	   ORI 80
+
+ZERO:	   SIM
+	   CALL DELAY
+	   DCR B
+	   JNZ NEXTBIT_T
+	   RET
+
+RECEIVE:	   MVI B,08
+	   MVI A,00
+
+NEXTBIT_R:	   RIM
+	   RAL
+	   CALL DELAY
+	   DCR B
+	   JNZ NEXTBIT_R
+	   RET
+
+DELAY:	   MVI D,FF
+
+DL1:	   DCR D
+	   JNZ DL1
+	   RET
+	

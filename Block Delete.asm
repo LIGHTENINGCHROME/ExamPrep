@@ -1,0 +1,15 @@
+
+START_ADDR EQU 2002H
+BLOCK_SIZE EQU 05H
+
+	   LXI H,START_ADDR	
+	   MVI C,BLOCK_SIZE	
+
+SHIFT:	   INX H	
+	   MOV A,M		
+	   DCX H		
+	   MOV M,A		
+	   INX H		
+	   DCR C		
+	   JNZ SHIFT	
+	   HLT

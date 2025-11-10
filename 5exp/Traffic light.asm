@@ -5,7 +5,7 @@ MAIN:	   MVI A,01
 	   MVI A,04
 	   OUT 80
 	   CALL DELAY
-	   MVI A,03
+	   MVI A,02
 	   OUT 80
 	   CALL DELAY
 	   JMP MAIN
